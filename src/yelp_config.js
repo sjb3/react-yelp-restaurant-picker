@@ -1,0 +1,2 @@
+export const CLIENT_ID=  'f8XXrm3Nv39dcftleVv5wQ';
+export const API_KEY = 'taxefT_spS3JhLVdTj2ZCgfDnosYncSTtyHpXDhvlxXu3qFG4xK0qa-ZWr2kC4Wm83nu6vtGyw-t1ikKtDAibGEWZ2CXiOBt56Y5ugKH9wfueuPmQ7BQWllxGHSxWnYx';
