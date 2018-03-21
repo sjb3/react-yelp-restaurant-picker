@@ -13,10 +13,10 @@ const axios = require('axios');
 
 // makeQuery :: Object => String
 function makeQuery(obj) {
-  const result = '?';
+  var result = '?';
 
   for(let key in obj) {
-    let str = obj[key] && obj[key].replace(/\s/g, '+');
+    let str = obj[key] && obj[key].replace(/\s/g, '+'); // empty space between city names should be replaced by +
     if (str) {
       result += `${key}=${str}&`
     }
@@ -24,22 +24,23 @@ function makeQuery(obj) {
   return result.slice(0, -1);
 };
 
-// console.log(makeQuery({term:'Restaurants', location:'Seattle'}));
+// console.log(makeQuery({term:'Restaurants', location:'San Francisco'}));
+
 function search(options) {
   let queryString = makeQuery(options);
 
   return axios.get(`https://api.yelp.com/v3/businesses/search${queryString}`,
-  {headers: {'Authorization': `Bearer ${API_KEY}`}, })
-  .then(result => {
-    return { success: true, data: result.data.businesses }
-  })
-  .catch(err => {
-    console.error('????????', err)
-    return { err: true, message: 'Yelp api crashed' };
-  });
+    {headers: {'Authorization': `Bearer ${API_KEY}`}, })
+    .then(result => {
+      return { success: true, data: result.data.businesses }
+    })
+    .catch(err => {
+      console.error('????????', err)
+      return { error: true, message: 'Yelp api crashed' };
+    });
 }
 
-// search({term:'Yoga||yoga', location: 'Seattle'||'seattle'})
+// search({term:'Yoga'||'yoga'||'YOGA', location: 'Seattle'||'seattle'||'SEATTLE'})
 //   .then(console.log)
 
 module.export = {
