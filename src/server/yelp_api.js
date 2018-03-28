@@ -1,9 +1,9 @@
-'use strict';
-
+import axios from 'axios';
 // TODO: move the key to env or config file later
-const API_KEY = 'K1yA1HCefBu6GOrarquTAombN4yzc4LiEt5ltUVDnVXVZNk33yFGmPPFC7-7v-RgXl-DtIi-dbOG-yWT1eR1LQsex--KaPwy5AWgFnWWUkR7IaTnkg0SA_6RGXqxWnYx';
-const axios = require('axios');
 
+const { makeQuery } = require('../common/utils');
+
+const API_KEY = 'K1yA1HCefBu6GOrarquTAombN4yzc4LiEt5ltUVDnVXVZNk33yFGmPPFC7-7v-RgXl-DtIi-dbOG-yWT1eR1LQsex--KaPwy5AWgFnWWUkR7IaTnkg0SA_6RGXqxWnYx';
 
 // creating abstraction/interface to get data from the YELP
 // hence, the front-end only cares about the restaurant display, not how to get the data
@@ -11,38 +11,23 @@ const axios = require('axios');
 // search({searchString, some parameters, term, location/coordinates})
 //    => get promise/.then ... => .then(console.log(restaurants))
 
-// makeQuery :: Object => String
-function makeQuery(obj) {
-  var result = '?';
-
-  for(let key in obj) {
-    let str = obj[key] && obj[key].replace(/\s/g, '+'); // empty space between city names should be replaced by +
-    if (str) {
-      result += `${key}=${str}&`
-    }
-  }
-  return result.slice(0, -1);
-};
 
 // console.log(makeQuery({term:'Restaurants', location:'San Francisco'}));
 
 function search(options) {
-  let queryString = makeQuery(options);
+  const queryString = makeQuery(options);
 
-  return axios.get(`https://api.yelp.com/v3/businesses/search${queryString}`,
-    {headers: {'Authorization': `Bearer ${API_KEY}`}, })
-    .then(result => {
-      return { success: true, data: result.data.businesses }
-    })
-    .catch(err => {
-      console.error('????????', err)
-      return { error: true, message: 'Yelp api crashed' };
-    });
+  return axios.get(
+    `https://api.yelp.com/v3/businesses/search${queryString}`,
+    { headers: { Authorization: `Bearer ${API_KEY}` } },
+  )
+    .then(result => ({ success: true, data: result.data.businesses }));
+  // .catch(error => ({ error: true, message: 'Yelp api crashed' }), console.log(err));
 }
 
-// search({term:'Yoga'||'yoga'||'YOGA', location: 'Seattle'||'seattle'||'SEATTLE'})
-//   .then(console.log)
+// search({ term: 'Yoga' || 'yoga' || 'YOGA', location: 'Seattle' || 'seattle' || 'SEATTLE' })
+//   .then(console.log);
 
-module.export = {
-  search
+module.exports = {
+  search,
 };
