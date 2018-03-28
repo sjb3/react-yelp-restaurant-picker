@@ -15,6 +15,9 @@ Set up by Ben Awad
     "start": "nodemon --exec babel-node index.js"
   },
 
+#################################################################
+HOW TO RUN THIS PROJECT?
+##################################################################
 => modified for this project(s)
 like this:
    "start:server": "nodemon --exec babel-node src/server/index.js",
@@ -25,6 +28,7 @@ HOWEVER, due to 'UnhandledPromiserejectionWarning',
   try 'yarn run dev'
   !!! this issue has to be investigated for full functionality
 
+###################################################################
 
 # ReduxSimpleStarter
 

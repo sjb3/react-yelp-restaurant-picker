@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Restaurant_select_buttons extends Component {
   render() {
@@ -6,6 +6,6 @@ export default class Restaurant_select_buttons extends Component {
       <div>
         Restaurant_select_buttons
       </div>
-    )
+    );
   }
 }

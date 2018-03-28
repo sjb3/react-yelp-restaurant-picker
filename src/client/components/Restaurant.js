@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-export default  class Restaurant extends Component {
-  render () {
+export default class Restaurant extends Component {
+  render() {
     const {
       name,
       rating,
       location,
-      cost
+      cost,
     } = this.props;
 
     return (
@@ -17,7 +17,7 @@ export default  class Restaurant extends Component {
         <p>Location: {location}</p>
         <p>Cost: {cost}</p>
       </div>
-    )
+    );
   }
 }
 
