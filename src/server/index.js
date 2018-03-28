@@ -1,8 +1,7 @@
-'use strict';
+import express from 'express';
 
-const express = require('express');
 const app = express();
-const YelpApi = require('./yelp_api');
+const YelpApi = require('./yelp_api.js');
 
 
 app.use(express.static('public'));
@@ -11,17 +10,16 @@ app.use(express.static('public'));
 // maybe separate file?
 
 app.get('/yelp/search', (req, res) => {
-  let params = req.query
-  // console.log('>>>>>>>>>>>query::', req.query)
-
+  const params = req.query;
+  // console.log('>>>>>>>>>>> query::', req.query)
   YelpApi.search(params)
-    .then(results => {
-      res.json(results)
-    })
-      console.log('>>>>>>>>>>>>>', typeof(YelpApi.search))
-
+    .then((results) => {
+      res.json(results.data);
+      // res.set('Access-Control-Allow-Origin', '*');
+    });
 });
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`>>>>> Server running on: http://localhost:${PORT}`)
+  console.log(`>>>>> Server running on: http://localhost:${PORT}`);
 });

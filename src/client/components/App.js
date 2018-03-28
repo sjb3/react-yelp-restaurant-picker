@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Restaurant from './Restaurant';
 import RestaurantSelectButtons from './RestaurantSelectButtons';
+// import axios from 'axios';
+import { makeQuery } from '../../common/utils';
+
 
 // What do i need to store?
 // We need a way to search for restaurants
@@ -16,20 +19,24 @@ export default class App extends Component {
       rejectedRestaurants: [],
       acceptedRestaurants: [],
       currentRestaurants: {},
-      restaurantsFromSearch: []
-    }
-  };
+      restaurantsFromSearch: [],
+    };
+  }
+
+  componentDidMount() {
+    const queryString = makeQuery({ location: 'Seattle', term: 'Yoga' });
+
+    fetch(`http://localhost:3000/yelp/search${queryString}`, { mode: 'no-cors' })
+      .then(res => res.json())
+      .then(json => console.log('json::', json));
+  }
 
   render() {
     return (
       <div>
-        <Restaurant />
+        <Restaurant name="option" />
         <RestaurantSelectButtons />
       </div>
     );
   }
-};
-
-/*
-
-*/
+}
