@@ -12,7 +12,7 @@ const API_KEY = 'K1yA1HCefBu6GOrarquTAombN4yzc4LiEt5ltUVDnVXVZNk33yFGmPPFC7-7v-R
 //    => get promise/.then ... => .then(console.log(restaurants))
 
 
-// console.log(makeQuery({term:'Restaurants', location:'San Francisco'}));
+// console.log(makeQuery({ term: 'Restaurants', location: 'San Francisco' }));
 
 function search(options) {
   const queryString = makeQuery(options);
