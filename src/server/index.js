@@ -14,8 +14,8 @@ app.get('/yelp/search', (req, res) => {
   // console.log('>>>>>>>>>>> query::', req.query)
   YelpApi.search(params)
     .then((results) => {
+      res.set('Access-Control-Allow-Origin', '*');
       res.json(results.data);
-      // res.set('Access-Control-Allow-Origin', '*');
     });
 });
 
