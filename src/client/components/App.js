@@ -42,15 +42,19 @@ export default class App extends Component {
     // console.log('REJECTED restaurants');
   }
   onRestaurantAccept() {
-    console.log('calling from TESTAIRANT ACCEPT');
+    // console.log('calling from TESTAIRANT ACCEPT');
     this.setState({ acceptedRestaurantIndex: this.state.currentRestaurantIndex });
   }
 
   render() {
     const { restaurantsFromSearch, currentRestaurantIndex, acceptedRestaurantIndex } = this.state;
+
     if (acceptedRestaurantIndex >= 0) {
-      <RestaurantDetails restaurant={restaurantsFromSearch[acceptedRestaurantIndex]} />;
+      return (
+        <RestaurantDetails restaurant={restaurantsFromSearch[acceptedRestaurantIndex]} />
+      );
     }
+
     if (restaurantsFromSearch.length > 0) {
       const restaurant = restaurantsFromSearch[currentRestaurantIndex];
       // console.log('//////////////////', (restaurant));
