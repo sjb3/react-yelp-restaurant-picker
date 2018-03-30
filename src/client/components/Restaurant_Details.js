@@ -7,12 +7,12 @@ export default (props) => {
   const { address1, address2, city } = location;
   return (
     <div>
-      <span>Restaurant_Details!!!!!!!
+      <span>Restaurant_Details:<br />
         {name}
-      </span>
-      {address1}
-      {address2}
-      {city}
+      </span><br />
+      {address1}<br />
+      {address2}<br />
+      {city}<br />
     </div>
   );
 };

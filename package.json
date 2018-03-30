@@ -10,7 +10,7 @@
     "start:server": "nodemon --exec babel-node src/server/index.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
-    "dev": "nodemon --trace-warnings --exec babel-node src/server/index.js"
+    "dev:server": "nodemon --trace-warnings --exec babel-node src/server/index.js"
   },
   "author": "",
   "license": "ISC",
